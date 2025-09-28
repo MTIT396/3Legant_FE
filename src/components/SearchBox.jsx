@@ -5,10 +5,9 @@ import { useDebounce } from "../hooks/useDebounce";
 import DropdownSearchBox from "./DropdownSearchBox";
 import { useNavigate } from "react-router-dom";
 import SearchItem from "./ui/SearchItem";
+import { axiosClient } from "../utils/axios";
 
 const SearchBox = ({ setIsOpenSearchBox }) => {
-  const { products } = useContext(ProductContext);
-  const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [dropProducts, setDropProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -16,11 +15,22 @@ const SearchBox = ({ setIsOpenSearchBox }) => {
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  // Lấy danh sách sản phẩm phổ biến (có thể thay bằng API)
-  const popularProducts = products
-    .sort((a, b) => b.popularity - a.popularity)
-    .slice(0, 5);
-
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchNewestProducts = async () => {
+      try {
+        setIsLoading(true);
+        const res = await axiosClient.get("api/products/newest");
+        setProducts(res.data.products);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchNewestProducts();
+  }, []);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -128,7 +138,7 @@ const SearchBox = ({ setIsOpenSearchBox }) => {
                   Sản phẩm phổ biến
                 </h3>
                 <ul>
-                  {popularProducts.map((product, index) => (
+                  {products.slice(0, 5).map((product, index) => (
                     <SearchItem
                       setSearchValue={setSearchValue}
                       onCloseSearchBox={setIsOpenSearchBox}
