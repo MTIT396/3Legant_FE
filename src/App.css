@@ -1,0 +1,314 @@
+@import "antd/dist/reset.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sirivennela&display=swap");
+:root {
+  --swiper-pagination-color: #333;
+}
+
+/* Price Checkbox */
+
+.price-checkbox label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1.5px solid #6c7275;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.price-checkbox input:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.price-checkbox input:checked + label::before {
+  background-color: #000;
+  border: none;
+}
+
+/*  */
+
+.price-checkbox_price label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1.5px solid #6c7275;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.price-checkbox_price input:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.price-checkbox_price input:checked + label::before {
+  background-color: #000;
+  border: none;
+}
+
+/* Center Slides React Swiper  */
+
+.custom-swiper {
+  padding: 20px 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: #fff;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+}
+.swiper-button-next {
+  right: 10px !important;
+}
+.swiper-button-prev {
+  left: 10px !important;
+}
+.swiper-button-next::after {
+  content: "next" !important;
+}
+.swiper-button-prev::after {
+  content: "prev" !important;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 18px !important;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Toastify Global CSS */
+.Toastify__toast--success {
+  background-color: #18bc1d !important; /* xanh */
+}
+
+.Toastify__toast--error {
+  background-color: #dc2626 !important; /* đỏ */
+}
+
+.Toastify__toast--info {
+  background-color: #2563eb !important; /* xanh dương */
+}
+
+/* UI mobile chung */
+.Toastify__toast {
+  width: 90% !important;
+  margin: 0 auto 8px auto !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  font-size: 14px !important;
+  display: flex;
+  align-items: center;
+}
+
+.Toastify__toast-body {
+  padding: 8px 12px !important;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .Toastify__toast {
+    width: 350px !important; /* vừa gọn bên góc */
+    margin: 0 0 8px auto !important; /* align phải */
+    font-size: 15px !important;
+  }
+}
+
+/* Scrollbar */
+
+/* Áp dụng cho toàn trang */
+::-webkit-scrollbar {
+  width: 8px; /* độ rộng scrollbar */
+  height: 8px; /* cho scroll ngang */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* màu nền track */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ababab; /* màu thanh kéo */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* màu khi hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin; /* mỏng */
+  scrollbar-color: #ababab #f1f1f1; /* thumb | track */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* hiệu ứng nhấp nháy / chạy gradient */
+@keyframes blinkLine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Order Progress */
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 20px;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.step-circle.pending {
+  background: #eef0f3;
+  color: #6b7280;
+  border: 2px dashed #c8ccd3;
+}
+
+.step-circle.completed {
+  background: #22c55e;
+  border: 2px solid #22c55e;
+  color: #fff;
+}
+
+.step-title {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .step-title {
+    font-size: 10px;
+  }
+}
+
+/* Connector line */
+.step-line {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #d1d5db, #e7eae7, #d1d5db);
+  background-size: 200% 100%;
+  animation: blinkLine 2s linear infinite;
+  z-index: 1;
+}
+
+.line-completed {
+  background: linear-gradient(90deg, #22c55e, #82e7a7, #22c55e);
+  background-size: 200% 100%;
+  animation: blinkLine 2s linear infinite;
+}
+
+@keyframes blinkLine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* badge */
+.badge-hook {
+  position: relative;
+  background-color: #38cb89;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 0 4px 4px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.badge-hook::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-bottom: 6px solid #164a32;
+  border-left: 6px solid transparent;
+}
+.badge-hook_v2 {
+  position: relative;
+  background-color: #d70018;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 0 4px 4px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.badge-hook_v2::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-bottom: 6px solid #50040d;
+  border-left: 6px solid transparent;
+}
