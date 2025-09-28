@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import SaleOff from "../components/SaleOff";
 import Header from "../layouts/Header";
@@ -273,20 +274,22 @@ const Product = () => {
 
                   {/* Product Price */}
                   <div className="relative shadow-md w-full px-6 py-4 rounded-3xl sm:w-fit border border-[#73A6FA] bg-gradient-to-tr from-transparent to-[#F2F7FF]">
-                    <div className="absolute -top-2 right-6">
-                      <span className="badge-hook_v2 font-inter">
-                        giảm{" "}
-                        <span className="font-medium text-[13px]">
-                          {" "}
-                          {Math.round(
-                            ((base_price_interface - sale_price_interface) /
-                              base_price_interface) *
-                              100
-                          )}
-                          %
+                    {base_price_interface && (
+                      <div className="absolute -top-2 right-6">
+                        <span className="badge-hook_v2 font-inter">
+                          giảm{" "}
+                          <span className="font-medium text-[13px]">
+                            {" "}
+                            {Math.round(
+                              ((base_price_interface - sale_price_interface) /
+                                base_price_interface) *
+                                100
+                            )}
+                            %
+                          </span>
                         </span>
-                      </span>
-                    </div>
+                      </div>
+                    )}
 
                     <span className="text-sm text-third font-medium">
                       Giá sản phẩm
