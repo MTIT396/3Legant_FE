@@ -16,7 +16,6 @@ export const useInfiniteScroll = (allProducts, pageSize, options = {}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false); // Track if we're showing filtered results
   const observerRef = useRef(null);
-
   const handleLoadMoreClick = () => {
     if (!isLoading && hasMore && !isFiltered) {
       loadMore();
@@ -102,7 +101,6 @@ export const useInfiniteScroll = (allProducts, pageSize, options = {}) => {
     setHasMore(allProducts.length > pageSize);
     setIsFiltered(false);
   }, [allProducts, pageSize]);
-
   return {
     loadMore,
     productsData,

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import SaleOff from "../components/SaleOff";
 import Header from "../layouts/Header";
@@ -180,7 +179,7 @@ const Product = () => {
     } catch (err) {
       console.error(err);
     }
-  }, [product_id]);
+  }, [product_id, user]);
 
   // Handle Menu Selection
   const [selected, setSelected] = useState("Reviews");
@@ -192,7 +191,6 @@ const Product = () => {
   const ActiveComponent = barMenu.find(
     (menu) => menu.name === selected
   ).component;
-
   const suggestedName = getWords(details?.name, 1);
   return (
     <div>

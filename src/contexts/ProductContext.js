@@ -22,8 +22,6 @@ const ProductProvider = ({ children }) => {
   // Fetch Wishlist
   const fetchWishlist = async () => {
     try {
-      if (!user) return;
-
       const res = await wishlistService.getWishList();
       setWishlist(res.data.data || []);
     } catch (err) {
@@ -34,7 +32,7 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     fetchWishlist();
     fetchProducts();
-  }, []);
+  }, [user]);
   return (
     <ProductContext.Provider
       value={{

@@ -14,9 +14,9 @@ import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
 import Product from "./pages/Product";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import ProductPage from "./pages/product/ProductPage";
 import ScrollToTop from "./components/ScrollToTop";
 import ContactUs from "./pages/ContactUs";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   return (

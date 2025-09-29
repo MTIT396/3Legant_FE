@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { motion, AnimatePresence } from "framer-motion";
@@ -48,7 +49,7 @@ export default function ReviewForm({ id }) {
     } catch (err) {
       console.error(err);
     }
-  }, [id]);
+  }, [id, user]);
 
   // Base Label Criterions
   const criterions = [

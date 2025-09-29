@@ -19,7 +19,6 @@ const criterionLabel = (value) => {
       return "";
   }
 };
-
 const ReviewItem = ({ review }) => {
   return (
     <div className="flex flex-wrap gap-4 pb-6 border-b border-gray-300">
@@ -29,7 +28,7 @@ const ReviewItem = ({ review }) => {
           <img
             src={
               review.avatar
-                ? `http://localhost:8080${review.avatar}`
+                ? review.avatar
                 : "http://getdrawings.com/free-icon-bw/free-avatars-icons-25.png"
             }
             alt="user avatar"

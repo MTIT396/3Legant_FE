@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { IoSearch } from "react-icons/io5";
-import { ProductContext } from "../contexts/ProductContext";
 import { useDebounce } from "../hooks/useDebounce";
 import DropdownSearchBox from "./DropdownSearchBox";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +16,7 @@ const SearchBox = ({ setIsOpenSearchBox }) => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  console.log(products);
   useEffect(() => {
     const fetchNewestProducts = async () => {
       try {
