@@ -1,14 +1,19 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa6";
 
-const steps = ["Pending", "Checkout", "Shipped", "Completed"];
+const steps = [
+  { id: 1, status: "PENDING" },
+  { id: 2, status: "CHECKOUT" },
+  { id: 3, status: "SHIPPED" },
+  { id: 4, status: "COMPLETED" },
+];
 
-export default function CustomSteps({ currentStep = 1 }) {
+export default function CustomSteps({ status = "PENDING" }) {
+  const currentStep = steps.find((item) => item.status === status).id;
   return (
     <div className="steps-container">
-      {steps.map((title, index) => {
+      {steps.map((step, index) => {
         const isCompleted = index < currentStep; // tới đâu thì completed
-
         return (
           <div key={index} className="step-item">
             {/* Circle */}
@@ -23,7 +28,7 @@ export default function CustomSteps({ currentStep = 1 }) {
             </div>
 
             {/* Title */}
-            <p className="step-title">{title}</p>
+            <p className="step-title">{step.status}</p>
 
             {/* Connector line */}
             {index < steps.length - 1 && (
