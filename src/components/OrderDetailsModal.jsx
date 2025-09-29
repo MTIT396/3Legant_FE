@@ -43,7 +43,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
 
             {/* Progress bar */}
             <div className="mb-4">
-              <OrderProgress currentStep={1} />
+              <OrderProgress status={order.status} />
             </div>
 
             <div className="flex flex-wrap gap-6 items-center justify-between">
