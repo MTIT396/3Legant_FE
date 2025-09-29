@@ -112,20 +112,21 @@ const Products = () => {
           />
         </div>
       </Suspense>
-      {showLoadMoreButton && isLoading ? (
-        <div className="size-8 mx-auto my-4 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
-      ) : (
-        <ButtonLight
-          className="w-fit mx-auto font-inter text-[15px]"
-          onClick={handleLoadMoreClick}
-          isLoading={isLoading}
-        >
-          Xem thêm tất cả {products.length - productsData.length} sản phẩm
-          <span>
-            <IoIosArrowDown size={20} />
-          </span>
-        </ButtonLight>
-      )}
+      {showLoadMoreButton &&
+        (isLoading ? (
+          <div className="size-8 mx-auto my-4 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+        ) : (
+          <ButtonLight
+            className="w-fit mx-auto font-inter text-[15px]"
+            onClick={handleLoadMoreClick}
+            isLoading={isLoading}
+          >
+            Xem thêm tất cả {products.length - productsData.length} sản phẩm
+            <span>
+              <IoIosArrowDown size={20} />
+            </span>
+          </ButtonLight>
+        ))}
 
       {showSkeleton && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mb-20">
