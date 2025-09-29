@@ -38,9 +38,9 @@ const SwiperProduct = ({
     const baseline = BASELINES[mode] || BASELINES.many;
     const bp = {};
     Object.entries(baseline).forEach(([key, value]) => {
-      // slidesPerView không vượt quá số sản phẩm có sẵn (và tối thiểu 1)
+      // slidesPerView không vượt quá số sản phẩm có sẵn (và tối thiểu 2)
       const clampValue = Math.max(
-        1.5,
+        1,
         Math.min(value, products.length > 0 ? products.length : value)
       );
       bp[key] = { slidesPerView: clampValue };
@@ -86,7 +86,7 @@ const SwiperProduct = ({
       spaceBetween={16}
       navigation
       grabCursor={true}
-      className="mySwiper custom-swiper"
+      className="mySwiper custom-swiper w-full"
     >
       {products.map((item, index) => (
         <SwiperSlide key={item.id ?? index}>
