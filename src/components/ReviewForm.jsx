@@ -34,7 +34,6 @@ export default function ReviewForm({ id }) {
 
   // Fetch Reviews , Ratings , Stats
   useEffect(() => {
-    if (!user) return;
     try {
       const fetchReviews = async () => {
         const res = await axiosClient.get(`/api/reviews/${id}`);
@@ -49,7 +48,7 @@ export default function ReviewForm({ id }) {
     } catch (err) {
       console.error(err);
     }
-  }, [id, user]);
+  }, [id]);
 
   // Base Label Criterions
   const criterions = [

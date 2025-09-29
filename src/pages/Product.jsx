@@ -168,7 +168,6 @@ const Product = () => {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(null);
   useEffect(() => {
-    if (!user) return;
     try {
       const fetchReviews = async () => {
         const res = await axiosClient.get(`/api/reviews/${product_id}`);
@@ -179,7 +178,7 @@ const Product = () => {
     } catch (err) {
       console.error(err);
     }
-  }, [product_id, user]);
+  }, [product_id]);
 
   // Handle Menu Selection
   const [selected, setSelected] = useState("Reviews");

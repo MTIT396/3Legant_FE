@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useEffect, useState } from "react";
 import { wishlistService } from "../services/wishlistService";
 import { axiosClient } from "../utils/axios";
@@ -21,6 +22,7 @@ const ProductProvider = ({ children }) => {
 
   // Fetch Wishlist
   const fetchWishlist = async () => {
+    if (!user) return;
     try {
       const res = await wishlistService.getWishList();
       setWishlist(res.data.data || []);
