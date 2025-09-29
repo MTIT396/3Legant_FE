@@ -87,7 +87,7 @@ const CartProduct = ({ product, removeCloseButtonClass, isFixedQuantity }) => {
           <div className="flex flex-col">
             <p
               onClick={goToProductPage}
-              className="text-sm text_neutral_1 font-semibold hover:underline mr-2 cursor-pointer"
+              className="text-sm line-clamp-2 text_neutral_1 font-semibold hover:underline mr-2 cursor-pointer"
             >
               {product_name}
             </p>
