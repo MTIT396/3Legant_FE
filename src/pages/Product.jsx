@@ -256,21 +256,23 @@ const Product = () => {
               <div className="xl:px-8 flex-1">
                 {/* Top Properties */}
                 <div className="flex flex-col gap-4 border-b border-gray-300 pb-4 mb-4">
-                  {rating > 0 && (
-                    <div className="flex items-center gap-1">
-                      <Rating
-                        style={{ maxWidth: 90 }}
-                        value={Number(rating).toFixed(1)}
-                        readOnly
-                      />
-                      <span className="text-sm mt-1 ml-[10px]">
-                        {reviews.length} reviews
-                      </span>
-                    </div>
-                  )}
-                  <h1 className="xl:text-[26px] mt-4 text-xl font-semibold xl:leading-[42px]">
-                    {details?.name || "Đang cập nhật"}
-                  </h1>
+                  <div className="">
+                    {rating > 0 && (
+                      <div className="flex items-center gap-1">
+                        <Rating
+                          style={{ maxWidth: 90 }}
+                          value={Number(rating).toFixed(1)}
+                          readOnly
+                        />
+                        <span className="text-sm mt-1 ml-[10px]">
+                          {reviews.length} reviews
+                        </span>
+                      </div>
+                    )}
+                    <h1 className="xl:text-[26px] sm:mt-0 mt-4 text-xl font-semibold xl:leading-[42px]">
+                      {details?.name || "Đang cập nhật"}
+                    </h1>
+                  </div>
 
                   {/* Product Price */}
                   <div className="relative shadow-md w-full px-6 py-4 rounded-3xl sm:w-fit border border-[#73A6FA] bg-gradient-to-tr from-transparent to-[#F2F7FF]">
