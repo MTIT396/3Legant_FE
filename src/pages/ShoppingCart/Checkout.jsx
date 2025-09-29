@@ -36,15 +36,12 @@ const Checkout = () => {
   const onSubmit = async (data) => {
     try {
       const res = await orderService.createOrder(data);
-      setOrderStore(res.data.order);
       if (res.data.success) {
+        setOrderStore(res.data.order);
         showToast(res.data.message, "success");
         setCart([]);
         await cartService.clearCart();
-
-        setTimeout(() => {
-          navigate("/cart/order");
-        }, 1000);
+        navigate("/cart/order");
       }
     } catch (error) {
       console.error("Error creating order", error);
