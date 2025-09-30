@@ -2,6 +2,9 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@smastrom/react-rating": "^1.5.0",
@@ -13,11 +16,11 @@
     "axios": "^1.9.0",
     "canvas-confetti": "^1.9.3",
     "framer-motion": "^12.10.0",
+    "moment": "^2.30.1",
     "moment-timezone": "^0.6.0",
-    "motion": "^12.10.0",
-    "react": "^19.1.0",
+    "react": "^18.3.1",
     "react-confetti": "^6.4.0",
-    "react-dom": "^19.1.0",
+    "react-dom": "^18.3.1",
     "react-hook-form": "^7.63.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.5.1",
@@ -25,6 +28,7 @@
     "react-toastify": "^11.0.5",
     "swiper": "^11.2.6",
     "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^3.4.17",
     "uuid": "^11.1.0",
     "web-vitals": "^2.1.4",
     "yup": "^1.7.0",
@@ -53,12 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "moment": "^2.30.1",
-    "tailwindcss": "^3.4.17"
-  },
-  "engines": {
-    "node": "20.x"
   }
 }
