@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { showToast } from "../../utils/toast";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { axiosClient } from "../../utils/axios";
 const Register = () => {
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [inputType, setInputType] = useState("password");
@@ -32,7 +33,7 @@ const Register = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/api/auth/register", form);
+      const res = await axiosClient.post("/api/auth/register", form);
       if (res.data.success) {
         showToast(res.data.message, "success");
         navigate("/login");
