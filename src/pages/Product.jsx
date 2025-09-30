@@ -167,6 +167,7 @@ const Product = () => {
   // Reviews
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(null);
+  const [triggerReview, setTriggerReview] = useState(false);
   useEffect(() => {
     try {
       const fetchReviews = async () => {
@@ -178,7 +179,7 @@ const Product = () => {
     } catch (err) {
       console.error(err);
     }
-  }, [product_id]);
+  }, [product_id, triggerReview]);
 
   // Handle Menu Selection
   const [selected, setSelected] = useState("Reviews");
@@ -485,7 +486,13 @@ const Product = () => {
             </div>
 
             {/* Menu Items */}
-            {<ActiveComponent product_id={product_id} reviews={reviews} />}
+            {
+              <ActiveComponent
+                product_id={product_id}
+                reviews={reviews}
+                onTrigger={setTriggerReview}
+              />
+            }
           </>
         )}
       </div>

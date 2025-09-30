@@ -10,7 +10,7 @@ import { showToast } from "../utils/toast";
 import { axiosClient } from "../utils/axios";
 import { useUser } from "../contexts/UserContext";
 
-export default function ReviewForm({ id }) {
+export default function ReviewForm({ id, onTrigger }) {
   const { user } = useUser();
   // State Managements
   const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +77,7 @@ export default function ReviewForm({ id }) {
       showToast("Vui lòng đăng nhập để sử dụng tính năng !", "error");
       return;
     }
+    onTrigger(true);
     await reviewServices.addToReviews(id, overallRating, comment, bodyItems);
     setIsOpen(false);
     setComment("");

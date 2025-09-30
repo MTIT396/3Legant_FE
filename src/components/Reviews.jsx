@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import ReviewItem from "./ReviewItem";
 import ButtonLight from "./ui/Button/ButtonLight";
 
-export function Reviews({ product_id, reviews }) {
+export function Reviews({ product_id, reviews, onTrigger }) {
   // Handle Show More Reviews
   const REVIEW_PER_TIME = 2;
   const [maxHeight, setMaxHeight] = useState("none");
@@ -32,7 +32,7 @@ export function Reviews({ product_id, reviews }) {
         <h2 className="font-medium text-[28px] mx-auto md:mx-0">
           Customer Reviews
         </h2>
-        <ReviewForm id={product_id} />
+        <ReviewForm id={product_id} onTrigger={onTrigger} />
       </div>
       <div className="flex items-center justify-between mt-10">
         <h2 className="font-medium sm:text-[28px] text-xl">
