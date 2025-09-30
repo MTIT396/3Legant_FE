@@ -32,10 +32,7 @@ const Register = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:8080/api/auth/register",
-        form
-      );
+      const res = await axios.post("/api/auth/register", form);
       if (res.data.success) {
         showToast(res.data.message, "success");
         navigate("/login");
