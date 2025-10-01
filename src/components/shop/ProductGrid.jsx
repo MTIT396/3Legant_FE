@@ -6,7 +6,6 @@ export const ProductGrid = ({
   productsData,
   isSkeletonVisible,
   searchValue,
-  isFiltered,
   hasMore,
 }) => {
   if (isSkeletonVisible) {

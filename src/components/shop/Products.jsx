@@ -102,13 +102,13 @@ const Products = () => {
             hasMore={hasMore}
           />
           {/* Intersection Observer target - works for both filtered and non-filtered */}
-          <div ref={observerRef} className="h-10" />
+          <div ref={observerRef} className="h-1" />
         </div>
       </Suspense>
 
       {/* Skeleton */}
       {showSkeleton && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mb-20">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-4 gap-y-8 mb-10">
           {Array.from({ length: skeletonCount }).map((_, index) => {
             return <SkeletonCard key={index} />;
           })}
