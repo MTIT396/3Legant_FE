@@ -57,7 +57,7 @@ export const ProductGrid = ({
         ))}
       </ul>
 
-      {isFiltered && (
+      {!hasMore && productsData.length > 0 && (
         <div className="text-center font-inter py-6 text-gray-500 border-t">
           <p>Đã hiển thị hết {productsData.length} kết quả được lọc</p>
         </div>

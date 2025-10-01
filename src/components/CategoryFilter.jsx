@@ -15,7 +15,7 @@ const CategoryFilter = ({
   const count = showMore ? categories.length : DEFAULT_CATEGORIES_COUNT;
 
   return (
-    <div className="flex flex-col gap-2 xl:max-w-[280px] w-1/2 shrink-0 ">
+    <div className="flex flex-col gap-2 xl:max-w-[280px] w-full md:w-1/2 shrink-0 ">
       <h4 className="font-semibold text-base text-secondary uppercase">
         Categories
       </h4>
@@ -41,7 +41,7 @@ const CategoryFilter = ({
         <div
           className={`${
             isOpen
-              ? "md:block max-h-[318px]"
+              ? "md:block max-h-[480px]"
               : "md:hidden max-h-0 overflow-hidden border-none"
           } md:absolute md:top-[100%] translate-y-2 z-[3] w-full rounded-xl bg-white shadow-xl border-[1.5px] border-cardColor transition-all duration-300 ease-out`}
         >

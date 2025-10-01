@@ -11,11 +11,9 @@ import { ProductGrid } from "./ProductGrid";
 import SortByFilter from "../SortByFilter";
 import PriceFilter from "../PriceFilter";
 import SearchBar from "../SearchBar";
-import ButtonLight from "../ui/Button/ButtonLight";
-import { IoIosArrowDown } from "react-icons/io";
 
 // Constants
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 30;
 
 // Main Component
 const Products = () => {
@@ -35,26 +33,21 @@ const Products = () => {
   const [sortId, setSortId] = useState(null);
   const { searchValue, setSearchValue, isSkeletonVisible, filterProducts } =
     useProductFilter(selectedCategories, selectedPrice, selectedSortBy);
-
   // Infinite Scroll
   const {
     productsData,
     setFilteredData,
     resetToOriginal,
-    isLoading,
     isFiltered,
     observerRef,
     hasMore,
-    handleLoadMoreClick,
-    showLoadMoreButton,
     showSkeleton,
     skeletonCount,
   } = useInfiniteScroll(products, PAGE_SIZE, {
-    enableAutoScroll: false,
-    enableLoadMoreButton: true,
+    enableAutoScroll: true,
+    enableLoadMoreButton: false,
     skeletonCount: 10,
   });
-
   const [isShowMore, setIsShowMore] = useState(false);
   // Apply filters when dependencies change
   useEffect(() => {
@@ -65,14 +58,12 @@ const Products = () => {
   const toggleShowMore = useCallback(() => {
     setIsShowMore((prev) => !prev);
   }, []);
-
   return (
     <div className="container mx-auto lg:px-[160px] mt-[60px]">
       <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
-
       {/* Filters */}
       <div className="grid grid-cols-1 xl:grid-cols-2">
-        <div className="flex flex-wrap gap-y-4 items-center gap-x-6">
+        <div className="flex flex-col md:flex-row gap-y-4 items-center gap-x-6">
           <CategoryFilter
             categories={categories}
             selectedCategoriesNames={selectedCategoriesNames}
@@ -100,7 +91,6 @@ const Products = () => {
           onSetId={setSortId}
         />
       </div>
-
       {/* Product List */}
       <Suspense fallback={<SkeletonCard />}>
         <div className="mt-6">
@@ -109,39 +99,19 @@ const Products = () => {
             isSkeletonVisible={isSkeletonVisible}
             searchValue={searchValue}
             isFiltered={isFiltered}
+            hasMore={hasMore}
           />
+          {/* Intersection Observer target - works for both filtered and non-filtered */}
+          <div ref={observerRef} className="h-10" />
         </div>
       </Suspense>
-      {showLoadMoreButton &&
-        (isLoading ? (
-          <div className="size-8 mx-auto my-4 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
-        ) : (
-          <ButtonLight
-            className="w-fit mx-auto font-inter text-[15px]"
-            onClick={handleLoadMoreClick}
-            isLoading={isLoading}
-          >
-            Xem thêm tất cả {products.length - productsData.length} sản phẩm
-            <span>
-              <IoIosArrowDown size={20} />
-            </span>
-          </ButtonLight>
-        ))}
 
+      {/* Skeleton */}
       {showSkeleton && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mb-20">
           {Array.from({ length: skeletonCount }).map((_, index) => {
             return <SkeletonCard key={index} />;
           })}
-        </div>
-      )}
-
-      {/* Intersection Observer target - only active when not filtered */}
-      {!isFiltered && <div ref={observerRef} className="h-10" />}
-
-      {!hasMore && productsData.length > 0 && !isFiltered && (
-        <div className="text-center font-medium font-inter py-8 text-gray-500 border-t">
-          <p>Đã hiển thị tất cả {productsData.length} sản phẩm</p>
         </div>
       )}
     </div>

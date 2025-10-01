@@ -21,7 +21,6 @@ export const useProductFilter = (
       selectedSortBy.length > 0
     );
   }, [selectedCategories, debouncedSearch, selectedPrice, selectedSortBy]);
-
   const filterProducts = useCallback(
     async (setFilteredData, resetToOriginal) => {
       if (!hasActiveFilters) {

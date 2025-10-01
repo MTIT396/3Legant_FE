@@ -10,17 +10,19 @@ const SortByFilter = ({
   onSetId,
 }) => (
   <div className="z-[3] w-full mt-auto">
-    <div onClick={onToggle} className="flex cursor-pointer justify-end mt-4">
-      <h1 className="text-base text-third font-semibold leading-[26px]">
-        Sort by
-      </h1>
-      <button
-        className={`${
-          isOpen ? "rotate-180" : ""
-        } transition cursor-pointer ml-2`}
-      >
-        <IoIosArrowDown size={18} />
-      </button>
+    <div className="flex cursor-pointer justify-end mt-4">
+      <div onClick={onToggle} className="flex">
+        <h1 className="text-base text-third font-semibold leading-[26px]">
+          Sort by
+        </h1>
+        <button
+          className={`${
+            isOpen ? "rotate-180" : ""
+          } transition cursor-pointer ml-2`}
+        >
+          <IoIosArrowDown size={18} />
+        </button>
+      </div>
     </div>
     <div className="relative max-w-[280px] ml-auto">
       <div

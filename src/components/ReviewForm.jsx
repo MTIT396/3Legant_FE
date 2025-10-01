@@ -77,7 +77,7 @@ export default function ReviewForm({ id, onTrigger }) {
       showToast("Vui lòng đăng nhập để sử dụng tính năng !", "error");
       return;
     }
-    onTrigger(true);
+    onTrigger((prev) => !prev);
     await reviewServices.addToReviews(id, overallRating, comment, bodyItems);
     setIsOpen(false);
     setComment("");

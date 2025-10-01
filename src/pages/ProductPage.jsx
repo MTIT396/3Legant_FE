@@ -24,12 +24,14 @@ import { MdCheck } from "react-icons/md";
 import Footer from "../layouts/Footer";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import { useOpenStore } from "../store/useOpenStore";
+import ButtonLight from "../components/ui/Button/ButtonLight";
+import { FaAngleDown } from "react-icons/fa6";
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 30;
 
 const ProductPage = () => {
-  const [categories, setCategories] = useState([]);
   const { products } = useContext(ProductContext);
+  const [categories, setCategories] = useState([]);
   const [isInitialLoading, setIsInitialLoading] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
 
@@ -43,14 +45,20 @@ const ProductPage = () => {
 
   // Initialize infinite scroll hook
   const {
+    showLoadMoreButton,
     productsData,
     setFilteredData,
     resetToOriginal,
     isLoading: isLoadingMore,
     hasMore,
-    isFiltered,
     observerRef,
-  } = useInfiniteScroll(products, ITEMS_PER_PAGE);
+    allFilteredProducts,
+    handleLoadMoreClick,
+  } = useInfiniteScroll(products, ITEMS_PER_PAGE, {
+    enableAutoScroll: false,
+    enableLoadMoreButton: true,
+    skeletonCount: 10,
+  });
 
   // Fetch Categories
   useEffect(() => {
@@ -132,7 +140,8 @@ const ProductPage = () => {
     setIsInitialLoading(false);
   };
   const isOpenSaleOff = useOpenStore((state) => state.isOpenSaleOff);
-
+  const rootProducts =
+    allFilteredProducts.length > 0 ? allFilteredProducts : products;
   return (
     <>
       <SaleOff bgColor="bg-saleBgColor" />
@@ -300,7 +309,7 @@ const ProductPage = () => {
           </div>
         ) : (
           <>
-            <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mt-6">
+            <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mt-6 mb-10">
               {isInitialLoading
                 ? Array.from({ length: 10 }).map((_, index) => (
                     <SkeletonCard key={`skl-${index}`} />
@@ -310,33 +319,28 @@ const ProductPage = () => {
                   ))}
             </ul>
 
-            {/* Loading more indicator - only show when infinite scroll is active */}
-            {isLoadingMore && !isFiltered && (
-              <div className="flex justify-center items-center py-8">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 w-full">
-                  {Array.from({ length: 10 }).map((_, index) => (
-                    <SkeletonCard key={`loading-${index}`} />
-                  ))}
-                </div>
-              </div>
-            )}
+            {showLoadMoreButton &&
+              (isLoadingMore ? (
+                <div className="size-6 mx-auto my-4 border-2 border-third shadow-xl border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <ButtonLight
+                  onClick={handleLoadMoreClick}
+                  className="mx-auto text-[15px] font-inter"
+                >
+                  Xem thêm {rootProducts.length - productsData.length} kết quả{" "}
+                  <FaAngleDown />
+                </ButtonLight>
+              ))}
 
             {/* Intersection observer target - only active when not filtered */}
-            {hasMore && !isInitialLoading && !isFiltered && (
+            {hasMore && !isInitialLoading && (
               <div ref={observerRef} className="h-10"></div>
             )}
 
             {/* End of products message */}
-            {!hasMore && productsData.length > 0 && !isFiltered && (
-              <div className="text-center font-medium font-inter py-8 text-gray-500 border-t">
+            {!hasMore && productsData.length > 0 && (
+              <div className="text-center font-inter py-8 text-[15px] text-gray-500 border-t">
                 <p>Đã hiển thị tất cả {productsData.length} sản phẩm</p>
-              </div>
-            )}
-
-            {/* Filtered results message */}
-            {isFiltered && productsData.length > 0 && (
-              <div className="text-center font-medium font-inter py-8 text-gray-500 border-t">
-                <p>Hiển thị {productsData.length} kết quả được lọc</p>
               </div>
             )}
           </>

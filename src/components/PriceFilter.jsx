@@ -41,7 +41,7 @@ const PriceFilter = ({
             isOpen
               ? "md:block max-h-[318px]"
               : "md:hidden max-h-0 overflow-hidden border-none"
-          } md:absolute md:top-[100%] translate-y-2 z-[3] w-full rounded-xl bg-white shadow-xl border-[1.5px] border-cardColor transition-all duration-300 ease-out`}
+          } md:absolute md:top-[100%] translate-y-2 z-[8] w-full rounded-xl bg-white shadow-xl border-[1.5px] border-cardColor transition-all duration-300 ease-out`}
         >
           <div className="flex flex-col p-2 gap-[10px]">
             {PRICE_FILTERS.map((price) => (

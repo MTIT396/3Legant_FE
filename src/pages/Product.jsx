@@ -169,6 +169,8 @@ const Product = () => {
   const [rating, setRating] = useState(null);
   const [triggerReview, setTriggerReview] = useState(false);
   useEffect(() => {
+    console.log("render");
+
     try {
       const fetchReviews = async () => {
         const res = await axiosClient.get(`/api/reviews/${product_id}`);
