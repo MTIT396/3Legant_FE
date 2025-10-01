@@ -7,10 +7,11 @@ export function getWords(str, number) {
   return str.trim().split(/\s+/).slice(0, number).join(" ");
 }
 export function randomSlice(array) {
-  if (!array.length) return [];
+  if (array.length < 2) return array;
 
-  const start = Math.floor(Math.random() * array.length);
-  const end = Math.floor(Math.random() * (array.length - start)) + start + 1;
+  const start = Math.floor(Math.random() * (array.length - 1));
+  const end =
+    Math.floor(Math.random() * (array.length - start - 1)) + start + 2;
 
   return array.slice(start, end);
 }

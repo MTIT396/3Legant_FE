@@ -10,9 +10,7 @@ root.render(
   <UserProvider>
     <ProductProvider>
       <CartProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <App />
       </CartProvider>
     </ProductProvider>
   </UserProvider>
