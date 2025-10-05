@@ -16,6 +16,7 @@ const Login = () => {
   // Handle show password
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [inputType, setInputType] = useState("password");
+  const [isLoading, setIsLoading] = useState(false);
   const id_1 = v4();
   const handleShowPassword = () => {
     if (isEyeOpen) {
@@ -39,6 +40,7 @@ const Login = () => {
   // Handle Submit
   const handleSubmit = async () => {
     try {
+      setIsLoading(true);
       const res = await axiosClient.post("/api/auth/login", form);
       if (res.data.success) {
         showToast(res.data.message, "success");
@@ -55,6 +57,8 @@ const Login = () => {
       } else {
         toast.error("Something went wrong");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -158,12 +162,20 @@ const Login = () => {
               </div>
             </div>
             {/* Button */}
+
             <span ref={buttonRef} onClick={handleSubmit}>
               <Button className="w-full">Sign In</Button>
             </span>
           </div>
         </div>
       </div>
+
+      {/* Loading */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center z-10">
+          <div className="size-8 border-2 border-third shadow-xl border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
     </div>
   );
 };
